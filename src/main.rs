@@ -1,4 +1,6 @@
 use structopt::StructOpt;
+use std::env;
+use std::fs;
 
 #[derive(StructOpt)]
 struct Cli {
@@ -14,4 +16,9 @@ fn main() {
         pattern: pattern,
         path: std::path::PathBuf::from(path),
     };
+
+    let content = fs::read_to_string("operating-social-system.txt")
+        .expect("Something went wrong reading the file");
+
+    println!("With text:\n{}", content);
 }
